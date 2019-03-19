@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+        <script src="angular.min.js"></script>
+        <script src="app.js"></script>
+        <style>
+        .textRed{
+            color:red;
+            font-weight: bold;
+        }
+        .textGreen{
+            color: green;
+            font-weight: bold;
+        }
+        .borderRed{
+            border-color: red;
+        }
+        .borderGreen{
+            border-color: green;
+        }
+        </style>
+        <title>Week 1: Assignement</title>
+<body>
+
+    <div ng-app='LunchCheck' style="text-align:center">
+        <div ng-controller='LunchCheckController'>
+        
+        
+       Items For Lunch : <input  ng-class="{borderRed: Highlighter == 'red', borderGreen: Highlighter== 'green'}" type="text" ng-model='ItemsForLunch'>
+        <button ng-click='CheckIfTooMuch()'>Check If Too Much</button>
+        <div>
+            <p style="font-size:12px">Please enter the items as comma separated. Application do NOT consider Empty Items. </p>
+            <br>
+            <p ng-class="{textRed: Highlighter == 'red', textGreen: Highlighter== 'green'}">{{UserMessage}}</p>
+        </div>
+        </div>
+        </div>
+</body>
+</html>
