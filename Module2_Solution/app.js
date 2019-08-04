@@ -23,7 +23,7 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
 }
 
 function ShoppingListCheckOffService() {
-  var service = this;
+  var _this = this;
   var toBuyItems = [
     { name: "Cookies", quantity: 10 },
     { name: "Maggie Noodles", quantity: 7 },
@@ -33,18 +33,20 @@ function ShoppingListCheckOffService() {
 
   var boughtItems = [];
 
-  service.buyItem = function(index) {
+  
+  _this.getToBuyItems = function () {
+    return toBuyItems;
+  };
+
+  _this.getBoughtItems = function () {
+    return boughtItems;
+  };
+  
+  _this.buyItem = function(index) {
     boughtItems.push(toBuyItems[index]);
     toBuyItems.splice(index, 1);
   };
 
-  service.getToBuyItems = function () {
-    return toBuyItems;
-  };
-
-  service.getBoughtItems = function () {
-    return boughtItems;
-  };
 }
 
 })();
