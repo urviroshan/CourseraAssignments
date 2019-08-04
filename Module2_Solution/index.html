@@ -19,9 +19,7 @@
       li > button {
         margin-left: 6px;
       }
-      button > span {
-        color: green;
-      }
+      
     </style>
   </head>
 
@@ -37,8 +35,8 @@
           <li ng-repeat="item in toBuy.items">
             Buy {{ item.quantity }} {{ item.name }}
             <button ng-click="toBuy.buy($index)" class="btn btn-default">
-              <span class="glyphicon glyphicon-ok"></span>
-            Bought
+              
+            Buy
             </button>
           </li>
         </ul>
