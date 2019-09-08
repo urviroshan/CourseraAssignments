@@ -5,7 +5,7 @@ angular.module('SearchApp', [])
 .controller('SearchController', SearchController)
 .service('SearchService', SearchService)
 .directive('foundItems', FoundItemsDirective)
-.constant('ApiRoot', "http://davids-restaurant.herokuapp.com");
+.constant('ApiRoot', "https://davids-restaurant.herokuapp.com");
 
 
 SearchController.$inject = ['SearchService'];
