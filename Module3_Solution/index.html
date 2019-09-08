@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app='NarrowItDownApp' lang="en">
+<html ng-app='SearchApp' lang="en">
   <head>
     <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,21 +9,21 @@
     <link rel="stylesheet" href="styles/styles.css">
   </head>
 <body>
-   <div ng-controller="NarrowItDownController as narrowCtrl" class="container">
+   <div ng-controller="SearchController as searchCtrl" class="container">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
     <div class="form-group">
-      <input ng-model="narrowCtrl.searchTerm" type="text" placeholder="search term" class="form-control">
+      <input ng-model="searchCtrl.searchTerm" type="text" placeholder="search term" class="form-control">
     </div>
     <div class="form-group narrow-button">
-      <button ng-click="narrowCtrl.searchMenuItems()" class="btn btn-primary">Narrow It Down For Me!</button>
+      <button ng-click="searchCtrl.searchMenuItems()" class="btn btn-primary">Narrow It Down For Me!</button>
     </div>
 
     <p><br/><hr/></p>
 
     <found-items
-      items="narrowCtrl.found"
-      on-remove="narrowCtrl.removeItem(index)">
+      items="searchCtrl.filteredItems"
+      on-remove="searchCtrl.removeItem(index)">
     </found-items>
 
   </div>

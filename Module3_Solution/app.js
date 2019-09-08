@@ -1,22 +1,20 @@
 (function () {
   'use strict'
 
-angular.module('NarrowItDownApp', [])
-.controller('NarrowItDownController', NarrowItDownController)
+angular.module('SearchApp', [])
+.controller('SearchController', SearchController)
 .service('SearchService', SearchService)
 .directive('foundItems', FoundItemsDirective)
-.constant('ApiBasePath', "http://davids-restaurant.herokuapp.com");
+.constant('ApiRoot', "http://davids-restaurant.herokuapp.com");
 
 
-NarrowItDownController.$inject = ['SearchService'];
-function NarrowItDownController(SearchService) {
+SearchController.$inject = ['SearchService'];
+function SearchController(SearchService) {
   var _this = this;
  _this.filteredItems = SearchService.getItems();
   _this.searchMenuItems = function () {
-    if (_this.searchText === "") {
-      SearchService.clear();
-    } else {
-      SearchService.getFilteredItems(_this.searchText)
+    if (_this.searchTerm !== "") {
+       SearchService.getFilteredItems(_this.searchTerm)
       .then(function(result) {
        _this.filteredItems = result;
       });
@@ -54,24 +52,31 @@ function FoundItemsDirectiveController() {
   };
 }
 
-SearchService.$inject = ['$http', 'ApiBasePath'];
-function SearchService($http, ApiBasePath) {
-  var service = this;
+SearchService.$inject = ['$http', 'ApiRoot'];
+function SearchService($http, ApiRoot) {
+  var lclService = this;
   var foundItems = [];
+  
+  lclService.getItems = function() {
+    return foundItems;
+  };
 
-  service.getFilteredItems = function(searchText) {
+  lclService.removeItem = function(index) {
+    foundItems.splice(index, 1);
+  };
+  lclService.getFilteredItems = function(searchTerm) {
     foundItems.splice(0, foundItems.length);
-    if (searchText === "") {
+    if (searchTerm === "") {
       return foundItems;
     }
     return $http({
       method: "GET",
-      url: (ApiBasePath + "/menu_items.json")
+      url: (ApiRoot + "/menu_items.json")
     }).then(function(result) {
       var allItems = result.data.menu_items;
       foundItems.splice(0, foundItems.length);
       for (var index = 0; index < allItems.length; ++index) {
-        if (allItems[index].description.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
+        if (allItems[index].description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
           foundItems.push(allItems[index]);
         }
       }
@@ -79,17 +84,6 @@ function SearchService($http, ApiBasePath) {
     });
   };
 
-  service.clear = function() {
-    foundItems.splice(0, foundItems.length);
-  }
-
-  service.removeItem = function(itemIndex) {
-    foundItems.splice(itemIndex, 1);
-  };
-
-  service.getItems = function() {
-    return foundItems;
-  };
 }
 
 })();
