@@ -1,0 +1,56 @@
+.ey-text-yellow{
+    color: #ffe600;
+}
+.ey-bg-yellow{
+    background-color: #ffe600;
+}
+
+.ey-border-left-yellow{
+border-left-style: outset;
+border-left-color: #ffe600;
+border-left-width: 5px;
+}
+.ey-border-right-green{
+    border-right-style: outset;
+    border-right-color: lightgreen;
+    border-right-width: 5px;
+}
+.ey-icon-size-medium{
+    max-width: 40px;
+    max-height: 40px;
+}
+.ey-icon-size-large{
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+}
+.ey-icon-size-small{
+    max-width: 30px;
+    max-height: 30px;
+}
+.ey-left-arrow{
+    background-image: url('../Assets/global\ gtm\ americas\ icons/icon_7.png');
+}
+
+.ey-right-arrow{
+    background-image: url('../Assets/global\ gtm\ americas\ icons/icon_7.png');
+    transform: rotate(180deg);
+}
+.rotate180{
+    transform: rotate(180deg);
+}
+.carousel-indicators li{
+    background-color: black !important;
+    border-bottom: 5px !important;
+    background-clip: border-box !important;
+    width: 10px !important;
+    height: 1px !important;
+    border-radius: 20px;
+    
+
+}
+
+.invertandgreyscale{
+    filter: invert(100%) grayscale(100%);
+}
